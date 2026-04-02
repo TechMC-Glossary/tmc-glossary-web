@@ -18,7 +18,7 @@ export const newVerification = async (token: string) => {
   }
 
   const existingUser = await prisma.user.findUnique({
-    where: { email: existingToken.email },
+    where: { email: existingToken.identifier },
   });
 
   if (!existingUser) {
