@@ -14,7 +14,10 @@ export const generateVerificationToken = async (email: string) => {
   if (existingToken) {
     await prisma.verificationToken.delete({
       where: {
-        id: existingToken.id,
+        identifier_token: {
+          token: existingToken.token,
+          identifier: existingToken.identifier,
+        },
       },
     });
   }
