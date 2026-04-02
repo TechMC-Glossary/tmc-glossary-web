@@ -34,7 +34,12 @@ export const newVerification = async (token: string) => {
   });
 
   await prisma.verificationToken.delete({
-    where: { token: existingToken.token },
+    where: {
+      identifier_token: {
+        token: existingToken.token,
+        identifier: existingToken.identifier,
+      },
+    },
   });
 
   return { success: "Email verified!" };
